@@ -1,12 +1,23 @@
 import { Routes, Route } from "react-router-dom";
+
 import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/navigation.component";
+
+const Shop = () => {
+  return <h1>I am the shop page</h1>;
+};
 
 const App = () => {
   // Routes ---> allowing app to register root level components
-  // Route --> When the URL matches / (empty param), render the <Home/> component
+  // Route --> when the URL matches / (empty param), render the <Home/> component
   return (
     <Routes>
-      <Route path="/" index element={<Home />} />
+      {/* persistent navigation bar using Outlet + nesting routes */}
+      <Route path="/" element={<Navigation />}>
+        {/* index ---> we have a parental component but also render whatever the **base** inside it  */}
+        <Route index element={<Home />} />
+        <Route path="shop" element={<Shop />} />
+      </Route>
     </Routes>
   );
 };
