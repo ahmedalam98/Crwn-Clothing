@@ -1,7 +1,6 @@
 import Directory from "../../components/directory/directory.component";
 
 const Home = () => {
-  console.log("Test router");
   const categories = [
     {
       id: 1,
