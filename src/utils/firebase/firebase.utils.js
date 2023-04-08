@@ -8,6 +8,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  // the following is observer listener
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -80,3 +82,8 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const signOutUser = async () => await signOut(auth);
+
+// now as the pattern increase it's obvious that we are spreading out our data related to auth across the app, So the following method will let you to move the code releated to authentication inside other components into one centralized place
+// the callback is going to get invoked whenever the user authenticates in or out ( sign : in / up / out )
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
