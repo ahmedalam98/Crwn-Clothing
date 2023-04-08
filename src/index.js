@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import { UserProvider } from "./contexts/user.context";
+import { ProductsProvider } from "./contexts/products.context";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -16,7 +17,9 @@ root.render(
     <BrowserRouter>
       {/* Now we can access all the features of BrowserRouter inside <App/>  */}
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
