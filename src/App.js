@@ -15,7 +15,7 @@ const App = () => {
       <Route path="/" element={<Navigation />}>
         {/* index ---> we have a parental component but also render whatever the **base** inside it  */}
         <Route index element={<Home />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="shop/*" element={<Shop />} />
         <Route path="sign-in" element={<Authentication />} />
         <Route path="checkout" element={<CheckOut />} />
       </Route>
