@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import { UserProvider } from "./contexts/user.context";
 import { ProductsProvider } from "./contexts/products.context";
+import { CartProvider } from "./contexts/cart.context";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -18,7 +19,9 @@ root.render(
       {/* Now we can access all the features of BrowserRouter inside <App/>  */}
       <UserProvider>
         <ProductsProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
