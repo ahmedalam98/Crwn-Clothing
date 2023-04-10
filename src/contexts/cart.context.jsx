@@ -6,7 +6,6 @@ const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   );
-
   // if found, increment quantity
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
@@ -15,7 +14,6 @@ const addCartItem = (cartItems, productToAdd) => {
         : cartItem
     );
   }
-
   // if not, return new array with modified cartItems / new cart item after clicking ( Add To Cart button )
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
@@ -25,12 +23,10 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToRemove.id
   );
-
   // check if quantity is equal to 1, if it is remove that item from the cart
   if (existingCartItem.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
   }
-
   // return back cartitems with matching cart item with reduced quantity
   return cartItems.map((cartItem) =>
     cartItem.id === cartItemToRemove.id
