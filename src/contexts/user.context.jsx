@@ -1,8 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
-import {
-  onAuthStateChangedListener,
-  createUserDocumentFromAuth,
-} from "../utils/firebase/firebase.utils";
+import { createContext, useReducer } from "react";
 
 import { createAction } from "../utils/reducer/reducer.utils";
 
@@ -54,17 +50,6 @@ export const UserProvider = ({ children }) => {
 
   // centralized place of Auth Listener
   // hook up to stream of some events
-  useEffect(() => {
-    // unsubscribe ---> to make onAuthStateChangedListener stop listening whenever the UserProvider is unmount
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      setCurrentUser(user);
-    });
-
-    return unsubscribe;
-  }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
