@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 
-import { userReducer } from "./user/user-reducer";
+import { userReducer } from "./user/user.reducer";
+import { categoriesReducer } from "./categories/categories.reducer";
 
-// object recieve keys for small reducers and actual value ot them
 export const rootReducer = combineReducers({
   user: userReducer,
+  categories: categoriesReducer,
 });
