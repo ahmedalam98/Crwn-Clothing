@@ -4,7 +4,10 @@
 // 3) recieve actions and dispatch them into reducers to make them  update the state
 
 import { compose, createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+// import logger from "redux-logger";
 
 import { rootReducer } from "./root-reducer";
 
@@ -17,8 +20,22 @@ const loggerMiddleware = (store) => (next) => (action) => {
 };
 
 // little library helpers that run before an action hits the reducer, it hits the middleware first
-const middleWares = [logger];
+const middleWares = [loggerMiddleware];
 
-const composeedEnhancers = compose(applyMiddleware(...middleWares));
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: ["user"],
+};
 
-export const store = createStore(rootReducer, undefined, composeedEnhancers);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const composedEnhancers = compose(applyMiddleware(...middleWares));
+
+export const store = createStore(
+  persistedReducer,
+  undefined,
+  composedEnhancers
+);
+
+export const persistor = persistStore(store);
