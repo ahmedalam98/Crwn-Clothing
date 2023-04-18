@@ -8,6 +8,14 @@ import logger from "redux-logger";
 
 import { rootReducer } from "./root-reducer";
 
+const loggerMiddleware = (store) => (next) => (action) => {
+  if (!action.type) {
+    return next(action);
+  }
+
+  next(action);
+};
+
 // little library helpers that run before an action hits the reducer, it hits the middleware first
 const middleWares = [logger];
 
