@@ -6,6 +6,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
 
 // import logger from "redux-logger";
 
@@ -20,7 +21,7 @@ const loggerMiddleware = (store) => (next) => (action) => {
 };
 
 // little library helpers that run before an action hits the reducer, it hits the middleware first
-const middleWares = [loggerMiddleware];
+const middleWares = [loggerMiddleware, thunk];
 
 const persistConfig = {
   key: "root",
