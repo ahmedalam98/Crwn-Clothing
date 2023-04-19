@@ -12,21 +12,14 @@ import { setCurrentUser } from "./store/user/user.action";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getCurrentUser,
 } from "./utils/firebase/firebase.utils";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // unsubscribe ---> to make onAuthStateChangedListener stop listening whenever the UserProvider is unmount
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsubscribe;
+    getCurrentUser();
   }, [dispatch]);
 
   // Routes ---> allowing app to register root level components
