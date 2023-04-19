@@ -1,17 +1,26 @@
-import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-import { fetchCategoriesStart } from "../../store/categories/categories.action";
 
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 
+import { useDispatch } from "react-redux";
+// import { fetchCategoriesStartAsync } from "../../store/categories/categories.action";
+import { useEffect } from "react";
+import { fetchCategoriesStart } from "../../store/categories/categories.action";
+
 const Shop = () => {
   const dispatch = useDispatch();
 
+  // Get categories from database
   useEffect(() => {
-    dispatch(fetchCategoriesStart());
+    const getCategoriesMap = async () => {
+      // const categoriesArray = await getCategoriesAndDocuments("categories");
+      // dispatch(setCategories(categoriesArray));
+      // dispatch(fetchCategoriesStartAsync()); // REDUX-THUNK
+      dispatch(fetchCategoriesStart());
+    };
+
+    getCategoriesMap();
   }, []);
 
   return (
